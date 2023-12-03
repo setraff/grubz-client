@@ -96,3 +96,40 @@ export const featuredProducts: Products = [
       },
       
 ]
+
+
+type Menu = {
+  id: number;
+  slug: string;
+  title: string;
+  desc?: string;
+  img?: string;
+  color: string;
+}[];
+
+export const menu: Menu = [
+  {
+    id: 1,
+    slug: "maldivianFood",
+    title: "Maldivian Food",
+    desc: "Maldivian food, cuz we all love home",
+    img: "/slidePic1.jpg",
+    color: "black",
+  },
+  {
+    id: 2,
+    slug: "burgers",
+    title: "Burgers",
+    desc: "Fun fact: Burgers are German apparently",
+    img: "/slidePic4.jpg",
+    color: "white",
+  },
+  {
+    id: 3,
+    slug: "mojito",
+    title: "Mojito",
+    desc: "kinda funny how we made a alcoholic drink non alcoholic...still better than Jugo",
+    img: "/slidepic3.jpg",
+    color: "white",
+  },
+];
