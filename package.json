@@ -9,14 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.13.4",
+    "axios": "^1.6.2",
+    "formik": "^2.4.5",
     "lucide-react": "^0.293.0",
     "next": "14.0.3",
     "react": "^18",
     "react-countdown": "^2.3.5",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "yup": "^1.3.2"
   },
   "devDependencies": {
+    "@types/node": "20.10.4",
+    "@types/react": "18.2.43",
     "autoprefixer": "^10.0.1",
+    "daisyui": "^4.4.19",
     "eslint": "^8",
     "eslint-config-next": "14.0.3",
     "postcss": "^8",
