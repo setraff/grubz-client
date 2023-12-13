@@ -12,7 +12,6 @@ const SignUp = () => {
   const router = useRouter()
 
   const signUpMutation = useMutation({
-    
     mutationFn: (values) => api.post("/restaurants", {
       name: values.name,
       email: values.email,

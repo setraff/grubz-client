@@ -18,7 +18,7 @@ const RestaurantSignUpForm = ({loading, errorMessage}) => {
         <Input {...email} errorMessage={emailVars.touched && emailVars.error} title="Admin email"/>
         <Input type="password" {...password} errorMessage={passwordVars.touched && passwordVars.error} title="Admin password"/>
         {errorMessage && (<div className='text-red-500 text-center w-96'>{errorMessage}</div>)}
-        <button className=' btn btn-primary w-96'>Submit</button>
+        <button className=' btn btn-primary w-96'>Sign Up</button>
   </Form>
   )
 }
