@@ -21,4 +21,15 @@ api.interceptors.request.use(
     err => Promise.reject(err)
 )
 
+api.interceptors.response.use(
+    response => response,
+    error => {
+        if(error.response.data.error === "Token expired")
+        {
+            window.location.href = "/login"
+        }
+        return Promise.reject(error)
+    }
+)
+
 export default api

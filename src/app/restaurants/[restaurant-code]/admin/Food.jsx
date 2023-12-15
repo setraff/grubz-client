@@ -56,7 +56,6 @@ const Food = () => {
     }
     const rows = foodQuery.data || []
 
-
     const columns= [
         { field: 'name', headerName: 'Name', width: 150, editable: true},
         { field: 'price', headerName: 'Price', width: 150, editable: true },
@@ -81,24 +80,26 @@ const Food = () => {
         >
             <div className='w-fit '>
             <AddFood/>
-            <DataGrid 
-                loading={foodQuery.isFetching || deleteMutation.isPending || updateMutation.isPending}
-                className='bg-gray-800 '
-                onCellEditStop={onCellEditStop}
-                columns={columns} 
-                rows={rows} 
-                classes={{
-                    cell: "text-white",
-                    headerFilterRow: "text-white",
-                    columnHeader: "text-white font-bold",
-                    footerCell: "text-white",
-                    footerContainer: "text-white",
-                    sortIcon: "text-white",
-                    menuIcon: "text-white",
-                    menuIconButton: "text-white",
-                    panelFooter: "text-white"
-                }} 
-            />
+            {rows.length > 0 && (
+                <DataGrid 
+                    loading={foodQuery.isFetching || deleteMutation.isPending || updateMutation.isPending}
+                    className='bg-gray-800 '
+                    onCellEditStop={onCellEditStop}
+                    columns={columns} 
+                    rows={rows} 
+                    classes={{
+                        cell: "text-white",
+                        headerFilterRow: "text-white",
+                        columnHeader: "text-white font-bold",
+                        footerCell: "text-white",
+                        footerContainer: "text-white",
+                        sortIcon: "text-white",
+                        menuIcon: "text-white",
+                        menuIconButton: "text-white",
+                        panelFooter: "text-white"
+                    }} 
+                />
+            )}
             </div>
         </Tab.Panel>
     )
