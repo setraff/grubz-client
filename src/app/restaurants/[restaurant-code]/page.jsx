@@ -6,17 +6,17 @@ import React, { useEffect } from 'react'
 const Restaurant = () => {
   const params = useParams()
 
-  const id = params.id
+  const code = params['restaurant-code']
 
   useEffect(() => {
-    if(id)
+    if(code)
     {
-      localStorage.setItem('reataurantId', id)
+      localStorage.setItem('restaurantCode', code)
     }
   }, [])
 
   return (
-    <div>{params.id}</div>
+    <div>{code}</div>
   )
 }
 

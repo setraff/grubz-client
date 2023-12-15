@@ -25,7 +25,15 @@ const LoginPage = () => {
     mutationFn: values => api.post("/login", values).then(res => res.data),
     onSuccess: token => {
       localStorage.setItem('token', token)
-      router.push("/")
+      const restaurantCode = localStorage.getItem('restaurantCode')
+      if(restaurantCode)
+      {
+        router.push(`/restaurants/${restaurantCode}`)
+      }
+      else
+      {
+        router.push("/")
+      }
     }
   })
 
