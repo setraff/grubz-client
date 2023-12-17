@@ -1,24 +1,10 @@
 import { Tab } from '@headlessui/react'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Delete, Plus, Trash } from 'lucide-react';
+import { Trash } from 'lucide-react';
 import React from 'react'
 import api from "../../../../utils/api"
 import AddFood from "./AddFood"
-
-// const rows = [
-//     { id: 69, name: 'Burger', price: 1632, description: 'A juicy burger', category: 'Fast food' },
-//     { id: 2, name: 'Pizza', price: 139, description: 'Delicious pizza', category: 'Italian' },
-//     { id: 3, name: 'Sushi', price: 308, description: 'Fresh sushi rolls', category: 'Japanese' },
-//     { id: 4, name: 'Tacos', price: 200, description: 'Crunchy tacos', category: 'Mexican' },
-//     { id: 5, name: 'Salad', price: 115, description: 'Healthy salad', category: 'Vegetarian' },
-//     { id: 6, name: 'Steak', price: 385, description: 'Juicy steak', category: 'American' },
-//     { id: 7, name: 'Pasta', price: 231, description: 'Delicious pasta', category: 'Italian' },
-//     { id: 8, name: 'Sushi Roll', price: 354, description: 'Assorted sushi rolls', category: 'Japanese' },
-//     { id: 9, name: 'Chicken Wings', price: 170, description: 'Spicy chicken wings', category: 'American' },
-//     { id: 10, name: 'Pad Thai', price: 262, description: 'Classic Pad Thai', category: 'Thai' },
-//   ];
-  
 
 const Food = () => {
     const qc = useQueryClient()
@@ -89,14 +75,8 @@ const Food = () => {
                     rows={rows} 
                     classes={{
                         cell: "text-white",
-                        headerFilterRow: "text-white",
                         columnHeader: "text-white font-bold",
-                        footerCell: "text-white",
-                        footerContainer: "text-white",
                         sortIcon: "text-white",
-                        menuIcon: "text-white",
-                        menuIconButton: "text-white",
-                        panelFooter: "text-white"
                     }} 
                 />
             )}

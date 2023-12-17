@@ -3,6 +3,9 @@
 import { Tab } from '@headlessui/react'
 import Tabs from "./Tabs"
 import Food from "./Food"
+import Categories from './Categories'
+import Orders from './Orders'
+import Users from './Users'
 
 
 export function classNames(...classes) {
@@ -17,14 +20,9 @@ export default function Admin() {
         <Tabs tabs={["Food", "Categories", "Orders", "Users"]}/>
         <Tab.Panels className="w-full mt-2">
           <Food/>
-            <Tab.Panel
-            >
-              Users
-            </Tab.Panel>
-            <Tab.Panel
-            >
-              Orders
-            </Tab.Panel>
+          <Categories/>
+          <Orders/>
+          <Users/>
         </Tab.Panels>
       </Tab.Group>
     </div>
