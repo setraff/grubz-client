@@ -10,6 +10,7 @@ const AddFoodForm = ({loading, errorMessage}) => {
     const [nameFields, nameVars, nameHelpers] = useField("name")
     const [priceFields, priceVars, priceHelpers] = useField("price")
     const [descriptionFields, descriptionVars, descriptionHelpers] = useField("description")
+    const [categoryFields, categoryVars, categoryHelpers] = useField("categoryId")
 
     const categoryQuery = useQuery({
         queryKey: ['categories'],
@@ -34,13 +35,15 @@ const AddFoodForm = ({loading, errorMessage}) => {
                 <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value={10}
+                    value={categoryVars.value}
                     label="Age"
-                    onChange={value => console.log(value)}
+                    onChange={e => categoryHelpers.setValue(e.target.value)}
                 >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                    {categories.map((cat, i) => {
+                        return (
+                            <MenuItem value={cat.id}>{cat.name}</MenuItem>
+                        )
+                    })}
                 </Select>
             </FormControl>
             )}

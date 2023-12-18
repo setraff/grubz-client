@@ -2,8 +2,31 @@ import { Disclosure } from '@headlessui/react'
 import { Formik } from 'formik'
 import { ChevronUp } from 'lucide-react'
 import React from 'react'
+import AddCategoryForm from '../../../../components/AddCategoryForm/AddCategoryForm'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import api from '@/utils/api'
+import * as Yup from 'yup'
 
 const AddCategory = () => {
+  const qc = useQueryClient()
+  const addCategoryMutation = useMutation({
+    mutationFn: ({ name }) => api.post("/categories", { name, food: [] }).then(res => res.data),
+    onSuccess: () => qc.invalidateQueries(["categories"])
+  })
+
+  const handleSubmit = values => addCategoryMutation.mutate(values)
+
+  const initialValues = {
+    name: null
+  }
+
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Required")
+  })
+
+  const loading = addCategoryMutation.isPending
+  const errorMessage = addCategoryMutation.error?.response?.data.error
+  
   return (
     <div className="w-full py-10">
     <div className="mx-auto w-full max-w-md rounded-2xl bg-gray-800 p-2">
@@ -20,10 +43,11 @@ const AddCategory = () => {
                 </Disclosure.Button>  
                 <Disclosure.Panel>
                     <Formik
-                        initialValues={{}}
-                        validationSchema={{}}
-                        onSubmit={values => addFoodMutation.mutate(values)}
+                        initialValues={initialValues}
+                        validationSchema={validationSchema}
+                        onSubmit={handleSubmit}
                     > 
+                        <AddCategoryForm loading={loading} errorMessage={errorMessage}/>
                     </Formik>
                 </Disclosure.Panel>
             </>
