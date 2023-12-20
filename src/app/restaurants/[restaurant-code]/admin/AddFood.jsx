@@ -14,14 +14,14 @@ export default function AddFood() {
     const initialValues = {
         name: null,
         price: null,
-        description: null,
+        description: "",
         categoryId: null
     }
 
     const validationSchema = Yup.object({
         name: Yup.string().required("Required"),
         price: Yup.string().required("Required"),
-        description: Yup.string().required("Required"),
+        description: null,
         categoryId: null
     })
 

@@ -61,10 +61,11 @@ const Food = () => {
                     labelId="category-select"
                     id="category-select"
                     label="Category"
-                    value={x.row.categoryId}
+                    value={x.row.categoryId.id}
                     onChange={e => updateMutation.mutate({id, field: "categoryId", value: e.target.value})}
                 >
                     {categories.map((cat, i) => {
+                        console.log(cat)
                         return (
                             <MenuItem value={cat.id}>{cat.name}</MenuItem>
                         )
