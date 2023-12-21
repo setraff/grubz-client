@@ -25,7 +25,7 @@ const Orders = () => {
   })
 
   const columns = [
-    { field: 'food', headerName: 'Food', width: 300, editable: true},
+    { field: 'food', headerName: 'Food', width: 300, height: 100, editable: true},
     { field: 'status', headerName: 'Status', width: 150, editable: false, type: 'actions', getActions: (x) => {
       const id = x.id
       console.log(x)

@@ -21,7 +21,7 @@ const OrderPage = () => {
           <Table  aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>OrderId</TableCell>
+                <TableCell>Order Items</TableCell>
                 <TableCell align="right">Status</TableCell>
               </TableRow>
             </TableHead>
