@@ -22,6 +22,13 @@ const Restaurant = () => {
     }
   }, [])
 
+  useEffect(() => {
+    if(!localStorage.getItem('token'))
+    {
+      router.push("/login")
+    }
+  }, [])
+
   const foodQuery = useQuery({
     queryKey: ['food'],
     queryFn: () => api.get("/food").then(res => res.data)

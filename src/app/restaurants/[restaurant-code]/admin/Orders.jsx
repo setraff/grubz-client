@@ -1,6 +1,8 @@
 import api from '@/utils/api'
 import { Tab } from '@headlessui/react'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { MenuItem, Select } from '@mui/material'
+import { DataGrid } from '@mui/x-data-grid'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import React from 'react'
 
 const Orders = () => {
@@ -10,18 +12,59 @@ const Orders = () => {
     queryFn: () => api.get("/restaurants/orders").then(res => res.data)
   })
 
-  const orders = orderQuery.data || []
+  const updateMutation = useMutation({
+    mutationFn: ({id, status}) => api.patch(`/orders/${id}`, {status}).then(res => res.data),
+    onSuccess: () => qc.invalidateQueries(['orders'])
+  })
+
+  const orders = (orderQuery.data || []).map(order => {
+    return {
+      ...order,
+      food: order.food.map(f => `${f.foodId.name} x${f.quantity}`).join(", ")
+    }
+  })
 
   const columns = [
-    { field: 'food', headerName: 'Food', width: 150, editable: false},
-    { field: 'description', headerName: 'Description', width: 150, editable: false},
+    { field: 'food', headerName: 'Food', width: 300, editable: true},
+    { field: 'status', headerName: 'Status', width: 150, editable: false, type: 'actions', getActions: (x) => {
+      const id = x.id
+      console.log(x)
+      return [
+          <>
+          <Select
+              labelId="category-select"
+              id="category-select"
+              label="Status"
+              value={x.row.status}
+              onChange={e => updateMutation.mutate({id, status: e.target.value})}
+          >
+            <MenuItem value={"Completed"}>Completed</MenuItem>
+            <MenuItem value={"Cancelled"}>Cancelled</MenuItem>
+            <MenuItem value={"Pending"}>Pending</MenuItem>
+          </Select>
+          </>
+      ]
+  }},
   ]
 
   const rows = orders
 
   return (
-    <Tab.Panel>
-        <div>Orders</div>
+    <Tab.Panel className={`w-full flex justify-center items-center`}>
+      <div className='w-fit'>
+        <DataGrid 
+              loading={orderQuery.isFetching || updateMutation.isPending}
+              className='bg-gray-800 '
+              // onCellEditStop={onCellEditStop}
+              columns={columns} 
+              rows={rows} 
+              classes={{
+                  cell: "text-white",
+                  columnHeader: "text-white font-bold",
+                  sortIcon: "text-white",
+              }} 
+          />
+      </div>
     </Tab.Panel>
   )
 }
