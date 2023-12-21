@@ -8,7 +8,8 @@ import React from 'react'
 const OrderPage = () => {
   const orderQuery = useQuery({
     queryKey:['user-orders'],
-    queryFn: () => api.get("/users/orders").then(res => res.data)
+    queryFn: () => api.get("/users/orders").then(res => res.data),
+    refetchOnWindowFocus: false
   })
 
   const orders = orderQuery.data || []
