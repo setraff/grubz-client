@@ -62,7 +62,7 @@ const Restaurant = () => {
         </>
       )}
       </div>
-      <div className='w-full h-full grid grid-cols-4 gap-10'>
+      <div className='w-full h-full grid md:grid-cols-4 gap-10'>
         {food.map(f => {
           const selected = cart.filter(fid => f.id == fid).length
           return (
